@@ -18,6 +18,7 @@
 		A937261B2150EB4C00082DE4 /* iPhone XS Max 2.png in Resources */ = {isa = PBXBuildFile; fileRef = A93726192150EB4C00082DE4 /* iPhone XS Max 2.png */; };
 		A937261E2150EBC000082DE4 /* iPhone 1.png in Resources */ = {isa = PBXBuildFile; fileRef = A937261C2150EBC000082DE4 /* iPhone 1.png */; };
 		A937261F2150EBC000082DE4 /* iPhone 2.png in Resources */ = {isa = PBXBuildFile; fileRef = A937261D2150EBC000082DE4 /* iPhone 2.png */; };
+		A93726212150F85900082DE4 /* Demo2.gif in Resources */ = {isa = PBXBuildFile; fileRef = A93726202150F85900082DE4 /* Demo2.gif */; };
 		A9C6ADA8214F5E9A000994C1 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C6ADA7214F5E9A000994C1 /* MenuViewController.swift */; };
 		A9C6ADCE214F7CF8000994C1 /* SlideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C6ADCA214F7CF8000994C1 /* SlideMenuViewController.swift */; };
 		A9C6ADCF214F7CF8000994C1 /* SizeClassHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C6ADCB214F7CF8000994C1 /* SizeClassHelper.swift */; };
@@ -59,6 +60,7 @@
 		A93726192150EB4C00082DE4 /* iPhone XS Max 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone XS Max 2.png"; sourceTree = "<group>"; };
 		A937261C2150EBC000082DE4 /* iPhone 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone 1.png"; sourceTree = "<group>"; };
 		A937261D2150EBC000082DE4 /* iPhone 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone 2.png"; sourceTree = "<group>"; };
+		A93726202150F85900082DE4 /* Demo2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Demo2.gif; sourceTree = "<group>"; };
 		A9C6ADA7214F5E9A000994C1 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		A9C6ADCA214F7CF8000994C1 /* SlideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SlideMenuViewController.swift; path = ../../VTSwiftySlideMenu/Classes/SlideMenuViewController.swift; sourceTree = "<group>"; };
 		A9C6ADCB214F7CF8000994C1 /* SizeClassHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SizeClassHelper.swift; path = ../../VTSwiftySlideMenu/Classes/SizeClassHelper.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 		A9C6ADD2214F7E1D000994C1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A93726202150F85900082DE4 /* Demo2.gif */,
 				A937261C2150EBC000082DE4 /* iPhone 1.png */,
 				A937261D2150EBC000082DE4 /* iPhone 2.png */,
 				A93726182150EB4C00082DE4 /* iPhone XS Max 1.png */,
@@ -299,6 +302,7 @@
 				A9C6ADD4214F7E3D000994C1 /* Demo.gif in Resources */,
 				A937261B2150EB4C00082DE4 /* iPhone XS Max 2.png in Resources */,
 				A937261F2150EBC000082DE4 /* iPhone 2.png in Resources */,
+				A93726212150F85900082DE4 /* Demo2.gif in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 				A937261A2150EB4C00082DE4 /* iPhone XS Max 1.png in Resources */,
