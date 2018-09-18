@@ -11,7 +11,7 @@ iOS 9.3 or later
 
 ### Screenshot ###
 
-![Demo](https://bitbucket.org/stevenvu/vtswiftslidemenu/raw/78808eaef559a5ad466dca3106043c6e6b374709/Resources/Demo.gif)
+![Demo](https://raw.githubusercontent.com/whatsltd4us/VTSwiftySlideMenu/master/Resources/Demo.gif)
 
 ## Installation
 
