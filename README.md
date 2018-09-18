@@ -7,11 +7,18 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 ## Requirements
 
 Xcode 9+
+
 iOS 9.3 or later
 
-### Screenshot ###
+## Screenshot 
 
-![Demo](https://raw.githubusercontent.com/whatsltd4us/VTSwiftySlideMenu/master/Resources/Demo.gif)
+### iPad
+
+![iPad](https://github.com/whatsltd4us/VTSwiftySlideMenu/blob/master/Example/Resources/Demo2.gif?raw=true)
+
+### iPhone XS Max
+
+![iPhone](https://github.com/whatsltd4us/VTSwiftySlideMenu/blob/master/Example/Resources/iPhone%20XS%20Max%202.png?raw=true)
 
 ## Installation
 
