@@ -1,0 +1,6 @@
+framework module Pods_VTSwiftySlideMenu_Example {
+  umbrella header "Pods-VTSwiftySlideMenu_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "VTSwiftySlideMenu",
+  "version": "0.1.0",
+  "summary": "A short description of VTSwiftySlideMenu.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/whatsltd4us/VTSwiftySlideMenu",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "whatsltd4us": "vudinhvinh@luvina.net"
+  },
+  "source": {
+    "git": "https://github.com/whatsltd4us/VTSwiftySlideMenu.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "VTSwiftySlideMenu/Classes/**/*"
+}

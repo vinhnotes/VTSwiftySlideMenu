@@ -1,0 +1,6 @@
+framework module VTSwiftySlideMenu {
+  umbrella header "VTSwiftySlideMenu-umbrella.h"
+
+  export *
+  module * { export * }
+}

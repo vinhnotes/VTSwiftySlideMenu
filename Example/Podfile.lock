@@ -1,0 +1,16 @@
+PODS:
+  - VTSwiftySlideMenu (0.1.0)
+
+DEPENDENCIES:
+  - VTSwiftySlideMenu (from `../`)
+
+EXTERNAL SOURCES:
+  VTSwiftySlideMenu:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  VTSwiftySlideMenu: 5d9d3553fc135165ea66bfc95816a3c0420bcf76
+
+PODFILE CHECKSUM: e614bafc99019479062cbcd55302cdca09d460c1
+
+COCOAPODS: 1.5.3

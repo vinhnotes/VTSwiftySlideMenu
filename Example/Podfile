@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'VTSwiftySlideMenu_Example' do
+  pod 'VTSwiftySlideMenu', :path => '../'
+
+  target 'VTSwiftySlideMenu_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
