@@ -25,8 +25,8 @@ class Utilities: NSObject
     class func animateTransitionController(_ controller: UIViewController?, duration: CGFloat, withType type: String?) {
         let transition = CATransition()
         transition.duration = CFTimeInterval(duration)
-        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.type = type ?? ""
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType(rawValue: type ?? "")
         controller?.view.layer.add(transition, forKey: nil)
     }
 }

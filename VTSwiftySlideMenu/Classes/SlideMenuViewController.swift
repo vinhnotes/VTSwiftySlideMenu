@@ -40,7 +40,7 @@ extension UINavigationController
         // set a new rootViewController
         if (animated)
         {
-            Utilities.animateTransitionController(viewController, duration: 0.6, withType: kCATransitionReveal)
+            Utilities.animateTransitionController(viewController, duration: 0.6, withType: CATransitionType.reveal.rawValue)
         }
         self.setViewControllers([viewController], animated: false)
     }
@@ -207,8 +207,8 @@ class SlideMenuViewController: UIViewController
     
     deinit
     {
-        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .UIKeyboardDidHide, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidHideNotification, object: nil)
     }
     
     func commonInit()
@@ -220,8 +220,8 @@ class SlideMenuViewController: UIViewController
         boucing = false
         tapOnContentViewToHideMenu = true
         useShadow = true
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidHide), name: .UIKeyboardDidHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidHide), name: UIResponder.keyboardDidHideNotification, object: nil)
         
         self.hideTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.closeTapGestureRecognizerFired(_:)))
         self.hideTapGestureRecognizer?.delegate = self as? UIGestureRecognizerDelegate
@@ -337,7 +337,7 @@ class SlideMenuViewController: UIViewController
     }
     
     // MARK: - status bar style
-    override var childViewControllerForStatusBarStyle: UIViewController? {
+    override var childForStatusBarStyle: UIViewController? {
         return menuViewVisible ? activeMenuViewController : contentViewController
     }
     
@@ -351,9 +351,9 @@ class SlideMenuViewController: UIViewController
     
     func setLeftMenu(_ menuViewController: UIViewController?) {
         if (leftMenuViewController != nil) {
-            leftMenuViewController?.willMove(toParentViewController: nil)
+            leftMenuViewController?.willMove(toParent: nil)
             leftMenuViewController?.view.removeFromSuperview()
-            leftMenuViewController?.removeFromParentViewController()
+            leftMenuViewController?.removeFromParent()
         }
         leftMenuViewController = menuViewController
         if menuViewController != nil {
@@ -365,19 +365,19 @@ class SlideMenuViewController: UIViewController
             menuView.frame = menuFrame
             menuView.autoresizingMask = [.flexibleRightMargin, .flexibleHeight]
             if let aController = menuViewController {
-                addChildViewController(aController)
+                addChild(aController)
             }
             view.addSubview(menuView)
             addShadow(to: menuView)
-            menuViewController?.didMove(toParentViewController: self)
+            menuViewController?.didMove(toParent: self)
         }
     }
     
     func setContentViewController(_ contentViewController: UIViewController, animated: Bool) {
         if (self.contentViewController != nil) {
-            self.contentViewController?.willMove(toParentViewController: nil)
+            self.contentViewController?.willMove(toParent: nil)
             self.contentViewController?.view.removeFromSuperview()
-            self.contentViewController?.removeFromParentViewController()
+            self.contentViewController?.removeFromParent()
         }
         
         self.contentViewController = contentViewController
@@ -386,7 +386,7 @@ class SlideMenuViewController: UIViewController
             (contentViewController as? UINavigationController)?.delegate = self as? UINavigationControllerDelegate
         }
 
-        addChildViewController(contentViewController)
+        addChild(contentViewController)
         contentViewController.view.frame = (contentContainerView?.bounds)!
         contentViewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
@@ -405,7 +405,7 @@ class SlideMenuViewController: UIViewController
             self.contentContainerView?.frame = currentFrame
         }
         let completionBlock: ((Bool) -> Void)? = { finished in
-            contentViewController.didMove(toParentViewController: self)
+            contentViewController.didMove(toParent: self)
         }
         
         if animated {
@@ -420,9 +420,9 @@ class SlideMenuViewController: UIViewController
     }
     
     func dismissContentViewController() {
-        contentViewController?.willMove(toParentViewController: nil)
+        contentViewController?.willMove(toParent: nil)
         contentViewController?.view.removeFromSuperview()
-        contentViewController?.removeFromParentViewController()
+        contentViewController?.removeFromParent()
         contentViewController = nil
         
         menuViewVisible = false
@@ -462,10 +462,10 @@ class SlideMenuViewController: UIViewController
     }
     
     func showLeftMenu() {
-        view.bringSubview(toFront: (leftMenuViewController?.view)!)
+        view.bringSubviewToFront((leftMenuViewController?.view)!)
         
         leftMenuViewController?.view.accessibilityElementsHidden = false
-        UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, leftMenuViewController?.view)
+        UIAccessibility.post(notification: UIAccessibility.Notification.screenChanged, argument: leftMenuViewController?.view)
         
         let showMenuCompletionBlock: ((Bool) -> Void)? = { finished in
             self.activeMenuViewController = self.leftMenuViewController
@@ -481,7 +481,7 @@ class SlideMenuViewController: UIViewController
 
         let showMenuBlock: (() -> Void)? = {
             self.showShadowView(true, animated: true)
-            self.view.bringSubview(toFront: (self.leftMenuViewController?.view)!)
+            self.view.bringSubviewToFront((self.leftMenuViewController?.view)!)
             var contentFrame: CGRect = self.leftMenuViewController!.view.frame
             contentFrame.origin.x = 0
             self.leftMenuViewController?.view.frame = contentFrame
@@ -497,7 +497,7 @@ class SlideMenuViewController: UIViewController
     }
     
     func hideLeftMenu() {
-        UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, contentViewController?.view)
+        UIAccessibility.post(notification: UIAccessibility.Notification.screenChanged, argument: contentViewController?.view)
         leftMenuViewController?.view.accessibilityElementsHidden = true
         
         let hideMenuCompletionBlock: ((Bool) -> Void)? = { finished in
@@ -533,7 +533,7 @@ class SlideMenuViewController: UIViewController
             return
         }
         
-        UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, contentViewController?.view)
+        UIAccessibility.post(notification: UIAccessibility.Notification.screenChanged, argument: contentViewController?.view)
         leftMenuViewController?.view.accessibilityElementsHidden = true
         
         let hideMenuCompletionBlock: ((Bool) -> Void)? = { finished in
@@ -590,10 +590,10 @@ class SlideMenuViewController: UIViewController
         if self.displayMenuSideBySide {
             return
         }
-        view.bringSubview(toFront: (leftMenuViewController?.view)!)
+        view.bringSubviewToFront((leftMenuViewController?.view)!)
         
         viewController.view.accessibilityElementsHidden = false
-        UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, viewController.view)
+        UIAccessibility.post(notification: UIAccessibility.Notification.screenChanged, argument: viewController.view)
         
         let showMenuCompletionBlock: ((Bool) -> Void)? = { finished in
             self.activeMenuViewController = viewController
@@ -621,7 +621,7 @@ class SlideMenuViewController: UIViewController
         }
         let showMenuBlock: (() -> Void)? = {
             self.showShadowView(true, animated: true)
-            self.view.bringSubview(toFront: (self.leftMenuViewController?.view)!)
+            self.view.bringSubviewToFront((self.leftMenuViewController?.view)!)
             var contentFrame: CGRect = self.leftMenuViewController!.view.frame
             contentFrame.origin.x = 0
             self.leftMenuViewController?.view.frame = contentFrame
@@ -787,7 +787,7 @@ class SlideMenuViewController: UIViewController
         let translation: CGPoint = sender.translation(in: leftMenuViewController!.view)
         let xTranslation: CGFloat = translation.x
         
-        let state: UIGestureRecognizerState = sender.state
+        let state: UIGestureRecognizer.State = sender.state
         
         switch state {
         case .began:
@@ -811,20 +811,20 @@ class SlideMenuViewController: UIViewController
                 aView?.frame = contentFrame ?? CGRect.zero
             }
             
-            if fabs(xTranslation) <= fabs(endX) && newStartX < 0 && fabs(Float(newStartX)) < fabs(Float(endX)) {
+            if abs(xTranslation) <= abs(endX) && newStartX < 0 && abs(Float(newStartX)) < abs(Float(endX)) {
                 let alpha: CGFloat = (xTranslation > 0) ? xTranslation : endX + xTranslation
                 shadowView?.backgroundColor = UIColor.black.withAlphaComponent(0.3 * alpha / endX)
             }
             break
         case .ended:
             if self.menuViewVisible {
-                if fabs(xTranslation) > menuWidth / 3 && xTranslation < 0 {
+                if abs(xTranslation) > menuWidth / 3 && xTranslation < 0 {
                     hideMenu(true)
                 } else {
                     showLeftMenu(true)
                 }
             } else {
-                if fabs(xTranslation) > menuWidth / 3 && xTranslation > 0 {
+                if abs(xTranslation) > menuWidth / 3 && xTranslation > 0 {
                     showLeftMenu(true)
                 } else {
                     hideMenu(true)
