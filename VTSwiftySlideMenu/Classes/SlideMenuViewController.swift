@@ -44,6 +44,16 @@ extension UIViewController
         }
         return currentViewController as! SlideMenuViewController
     }
+    
+    func canPerformSegue(withIdentifier id: String) -> Bool {
+        guard let segues = self.value(forKey: "storyboardSegueTemplates") as? [NSObject] else { return false }
+        return segues.first { $0.value(forKey: "identifier") as? String == id } != nil
+    }
+    
+    func performSegueIfPossible(withIdentifier: String?, sender: AnyObject? = nil) {
+        guard let id = withIdentifier, canPerformSegue(withIdentifier: id) else { return }
+        self.performSegue(withIdentifier: id, sender: sender)
+    }
 }
 
 class SlideMenuViewController: UIViewController
@@ -165,8 +175,8 @@ class SlideMenuViewController: UIViewController
         leftSeparatorView?.isHidden = true
         contentContainer.addSubview(leftSeparatorView!)
         
-        performSegue(withIdentifier: "content", sender: self)
-        performSegue(withIdentifier: "leftMenu", sender: self)
+        performSegueIfPossible(withIdentifier: "content", sender: self)
+        performSegueIfPossible(withIdentifier: "leftMenu", sender: self)
     }
     
     override func viewWillAppear(_ animated: Bool)
