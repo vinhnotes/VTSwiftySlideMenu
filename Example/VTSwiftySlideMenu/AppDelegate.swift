@@ -15,7 +15,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+//        Config slide menu programmatically
+//        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+//        let root =  SlideMenuViewController.init()
+//        let menu = storyboard.instantiateViewController(withIdentifier: "Menu")
+//        let content = storyboard.instantiateViewController(withIdentifier: "Home")
+//        root.setLeftMenu(menu)
+//        root.setContentViewController(UINavigationController.init(rootViewController: content), animated: true)
+//        window?.rootViewController = root
+//        window?.makeKeyAndVisible()
         return true
     }
 

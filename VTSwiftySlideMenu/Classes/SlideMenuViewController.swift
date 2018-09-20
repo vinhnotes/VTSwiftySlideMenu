@@ -16,22 +16,6 @@ protocol SlideMenuViewControllerDelegate: class
     func didHideMenu(viewController: SlideMenuViewController) -> Void
 }
 
-extension UIView
-{
-    func SlideMenuViewController_findSubviewOfClass(anyClass: AnyClass) -> UIView
-    {
-        if (self.isKind(of: anyClass))
-        {
-            return self
-        }
-        for view in self.subviews
-        {
-            return view.SlideMenuViewController_findSubviewOfClass(anyClass: anyClass)
-        }
-        return UIView.init();
-    }
-}
-
 extension UINavigationController
 {
     func setRootViewController(_ viewController: UIViewController, animated: Bool) {
@@ -64,7 +48,6 @@ extension UIViewController
 
 class SlideMenuViewController: UIViewController
 {
-    
     let SlideMenuWillShowNotification = "SlideMenuWillShowNotificationInternal"
     let SlideMenuDidShowNotification = "SlideMenuDidShowNotificationInternal"
     let SlideMenuWillHideNotification = "SlideMenuWillHideNotificationInternal"
@@ -182,15 +165,8 @@ class SlideMenuViewController: UIViewController
         leftSeparatorView?.isHidden = true
         contentContainer.addSubview(leftSeparatorView!)
         
-        do
-        {
-            performSegue(withIdentifier: "content", sender: self)
-        }
-        do
-        {
-            performSegue(withIdentifier: "leftMenu", sender: self)
-        }
-        
+        performSegue(withIdentifier: "content", sender: self)
+        performSegue(withIdentifier: "leftMenu", sender: self)
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -497,6 +473,9 @@ class SlideMenuViewController: UIViewController
     }
     
     func hideLeftMenu() {
+        if (self.leftMenuViewController == nil) {
+            return
+        }
         UIAccessibility.post(notification: UIAccessibility.Notification.screenChanged, argument: contentViewController?.view)
         leftMenuViewController?.view.accessibilityElementsHidden = true
         
@@ -650,10 +629,6 @@ class SlideMenuViewController: UIViewController
         showMenu(self.leftMenuViewController!, animated: animated)
     }
     
-    func showMenu(_ animated: Bool) {
-        showLeftMenu(animated)
-    }
-    
     func notifyWillShowMenu() {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: SlideMenuWillShowNotification), object: self)
     }
@@ -704,10 +679,6 @@ class SlideMenuViewController: UIViewController
         })
     }
 
-    func switchMenu(_ animated: Bool) {
-        switchLeftMenu(animated)
-    }
-    
     func switchLeftMenu(_ animated: Bool) {
         if menuViewVisible {
             hideMenu(animated)
