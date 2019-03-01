@@ -12,13 +12,7 @@ iOS 9.3 or later
 
 ## Screenshot 
 
-### iPad
-
 ![iPad](https://github.com/whatsltd4us/VTSwiftySlideMenu/blob/master/Example/Resources/Demo2.gif?raw=true)
-
-### iPhone XS Max
-
-![iPhone](https://github.com/whatsltd4us/VTSwiftySlideMenu/blob/master/Example/Resources/iPhone%20XS%20Max%202.png?raw=true)
 
 ## Installation
 
